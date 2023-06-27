@@ -153,6 +153,6 @@ We would like to thank Microverse for the outstanding collection of information 
 
 ## 📝 License <a name="license"></a>
 
-This project is [MIT](https://github.com/Christelle-12/school_library/commit/21c896b6e0ca5a393e20a904ad3f87b378d2d87d) licensed.
+This project is [MIT](https://github.com/Christelle-12/school_library/blob/Add_classes/LICENSE.md) licensed.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
