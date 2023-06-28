@@ -52,9 +52,7 @@
 
 ### Key Features <a name="key-features"></a>
 
-- **[Set up associations]**
-- **[Add basic User Interface]**
-
+- **[Object Oriented Programming School library]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -116,9 +114,8 @@ You can deploy this project using: **Not available**
 ## 🔭 Future Features <a name="future-features"></a>
 
 
-- [ ] **[class inheritance ]**
-- [ ] **[Method overriding ]**
-- [ ] **[constructors ]**
+- [ ] **[Set up associations ]**
+- [ ] **[Add basic User Interface ]**
 
 
 
