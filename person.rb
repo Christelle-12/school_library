@@ -1,4 +1,8 @@
+require_relative 'nameable'
+
 class Person
+  include Nameable
+
   attr_reader :id
   attr_accessor :name, :age
 
@@ -7,6 +11,10 @@ class Person
     @name = name
     @age = age
     @parent_permission = parent_permission
+  end
+
+  def correct_name
+    name
   end
 
   private
