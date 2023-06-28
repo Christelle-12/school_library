@@ -1,7 +1,7 @@
 require_relative 'nameable'
 
-class Decorator
-  include Nameable
+class Decorator < Nameable
+    attr_accessor :nameable
 
   def initialize(nameable)
     @nameable = nameable
@@ -14,12 +14,12 @@ end
 
 class CapitalizeDecorator < Decorator
   def correct_name
-    super.capitalize
+    @nameable.correct_name.capitalize
   end
 end
 
 class TrimmerDecorator < Decorator
   def correct_name
-    super[0...10]
+    @nameable.correct_name.length > 10 ? @nameable.correct_name[0..9] : @nameable.correct_name
   end
 end
