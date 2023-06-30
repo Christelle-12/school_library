@@ -114,7 +114,6 @@ You can deploy this project using: **Not available**
 ## 🔭 Future Features <a name="future-features"></a>
 
 
-- [ ] **[Set up associations ]**
 - [ ] **[Add basic User Interface ]**
 
 
