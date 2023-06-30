@@ -1,26 +1,26 @@
-require_relative 'nameable'
+require_relative 'person'
 
-class Decorator < Nameable
-  attr_accessor :nameable
+class Decorator
+  attr_accessor :person
 
-  def initialize(nameable)
-    super()
-    @nameable = nameable
+  def initialize(person)
+    @person = person
   end
 
   def correct_name
-    @nameable.correct_name
+    person.correct_name
   end
 end
 
 class CapitalizeDecorator < Decorator
   def correct_name
-    @nameable.correct_name.capitalize
+    super.capitalize
   end
 end
 
 class TrimmerDecorator < Decorator
   def correct_name
-    @nameable.correct_name.length > 10 ? @nameable.correct_name[0..9] : @nameable.correct_name
+    name = super
+    name.length > 10 ? name[0..9] : name
   end
 end
