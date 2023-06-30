@@ -1,6 +1,6 @@
 require_relative 'person'
 
-class Decorator < Person
+class Decorator
   attr_accessor :person
 
   def initialize(person)
@@ -14,12 +14,13 @@ end
 
 class CapitalizeDecorator < Decorator
   def correct_name
-    person.correct_name.capitalize
+    super.capitalize
   end
 end
 
 class TrimmerDecorator < Decorator
   def correct_name
-    person.correct_name.length > 10 ? person.correct_name[0..9] : person.correct_name
+    name = super
+    name.length > 10 ? name[0..9] : name
   end
 end

@@ -1,5 +1,5 @@
 class Person
-  attr_reader :id
+  attr_reader :id, :rentals
   attr_accessor :name, :age
 
   def initialize(age, name: 'Unknown', parent_permission: true)
@@ -16,10 +16,6 @@ class Person
 
   def add_rental(rental)
     rentals << rental
-  end
-
-  def rentals
-    @rentals
   end
 
   private
