@@ -50,30 +50,26 @@ class App
   end
 
   def create_rental(person_index, book_index)
-    person = people[person_index]
-    book = books[book_index]
+    person = people[person_index - 1]
+    book = books[book_index - 1]
     date = Time.now
-
+  
     rental = Rental.new(date, book, person)
     rentals << rental
-
+  
     puts 'Rental created successfully!'
   end
+  
 
   def list_rentals_by_person_id(person_id)
-    person = find_person_by_id(person_id)
-
+    person = @people.find { |p| p.id == person_id }
     if person
-      person_rentals = rentals.select { |rental| rental.person == person }
-      output = "List of rentals for Person ID #{person_id}:\n"
-      person_rentals.each do |rental|
-        output += "Book: #{rental.book.title}, Date: #{rental.date}\n"
-      end
-      output
+      person.list_rentals
     else
-      'Invalid person ID.'
+      puts "Person not found."
     end
   end
+  
 
   private
 

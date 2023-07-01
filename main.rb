@@ -60,19 +60,17 @@ def handle_create_book(app)
 end
 
 def handle_create_rental(app)
-  puts 'List of available people:'
+  print 'Select a person from the following list by number: '
   app.list_all_people
-  print 'Enter the index of the person: '
   person_index = gets.chomp.to_i - 1
 
   if person_index >= 0 && person_index < app.people.length
-    puts 'List of available books:'
+    print 'Select a book from the following list by number: '
     app.list_all_books
-    print 'Enter the index of the book: '
     book_index = gets.chomp.to_i - 1
 
     if book_index >= 0 && book_index < app.books.length
-      app.create_rental(person_index, book_index) # Pass person_index and book_index as arguments
+      app.create_rental(person_index, book_index) 
     else
       puts 'Invalid book index.'
     end
@@ -82,10 +80,14 @@ def handle_create_rental(app)
 end
 
 def handle_list_rentals(app)
-  print 'Enter person ID: '
-  person_id = gets.chomp.to_i
-  app.list_rentals_by_person_id(person_id)
+  puts 'List of rentals:'
+  app.rentals.each_with_index do |rental, index|
+    book = rental.book
+    person = rental.person
+    puts "#{index + 1}. Person: #{person.name}, Book: #{book.title}, Author: #{book.author}, Rental Date: #{rental.date}"
+  end
 end
+
 
 def exit_app(_ = nil)
   puts 'Thank you for using the Library Management System. Goodbye!'
