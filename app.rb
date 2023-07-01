@@ -15,16 +15,16 @@ class App
 
   def list_all_books
     puts 'List of all books:'
-    books.each do |book|
-      puts "Title: #{book.title}, Author: #{book.author}"
+    books.each_with_index do |book, index|
+      puts "#{index + 1}. Title: #{book.title}, Author: #{book.author}"
     end
   end
 
   def list_all_people
     puts 'List of all people:'
-    people.each do |person|
+    people.each_with_index do |person, index|
       designation = person.is_a?(Student) ? '[Student]' : '[Teacher]'
-      puts "ID: #{person.id}, Name: #{person.name}, Age: #{person.age}, Designation: #{designation}"
+      puts "#{index + 1}. ID: #{person.id}, Name: #{person.name}, Age: #{person.age}, Designation: #{designation}"
     end
   end
 
@@ -49,29 +49,15 @@ class App
     "Book created successfully. Title: #{book.title}, Author: #{book.author}"
   end
 
-  def create_rental(person_id, _book_index)
-    person = find_person_by_id(person_id)
+  def create_rental(person_index, book_index)
+    person = people[person_index]
+    book = books[book_index]
+    date = Time.now
 
-    if person
-      puts 'List of available books:'
-      books.each_with_index do |book, index|
-        puts "#{index + 1}. Title: #{book.title}, Author: #{book.author}"
-      end
+    rental = Rental.new(date, book, person)
+    rentals << rental
 
-      print 'Enter the index of the book to rent: '
-      selected_index = gets.chomp.to_i - 1
-
-      if selected_index >= 0 && selected_index < books.length
-        book = books[selected_index]
-        rental = Rental.new(book, person)
-        rentals << rental
-        "Rental created successfully. Person: #{person.name}, Book: #{book.title}"
-      else
-        'Invalid book index.'
-      end
-    else
-      'Invalid person ID.'
-    end
+    puts 'Rental created successfully!'
   end
 
   def list_rentals_by_person_id(person_id)
@@ -93,9 +79,5 @@ class App
 
   def find_person_by_id(person_id)
     people.find { |person| person.id == person_id }
-  end
-
-  def find_book_by_title(book_title)
-    books.find { |book| book.title == book_title }
   end
 end

@@ -60,11 +60,25 @@ def handle_create_book(app)
 end
 
 def handle_create_rental(app)
-  print 'Enter person ID: '
-  person_id = gets.chomp.to_i
-  print 'Enter book title: '
-  book_title = gets.chomp
-  app.create_rental(person_id, book_title)
+  puts 'List of available people:'
+  app.list_all_people
+  print 'Enter the index of the person: '
+  person_index = gets.chomp.to_i - 1
+
+  if person_index >= 0 && person_index < app.people.length
+    puts 'List of available books:'
+    app.list_all_books
+    print 'Enter the index of the book: '
+    book_index = gets.chomp.to_i - 1
+
+    if book_index >= 0 && book_index < app.books.length
+      app.create_rental(person_index, book_index) # Pass person_index and book_index as arguments
+    else
+      puts 'Invalid book index.'
+    end
+  else
+    puts 'Invalid person index.'
+  end
 end
 
 def handle_list_rentals(app)
