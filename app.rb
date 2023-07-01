@@ -53,23 +53,21 @@ class App
     person = people[person_index - 1]
     book = books[book_index - 1]
     date = Time.now
-  
+
     rental = Rental.new(date, book, person)
     rentals << rental
-  
+
     puts 'Rental created successfully!'
   end
-  
 
   def list_rentals_by_person_id(person_id)
     person = @people.find { |p| p.id == person_id }
     if person
       person.list_rentals
     else
-      puts "Person not found."
+      puts 'Person not found.'
     end
   end
-  
 
   private
 

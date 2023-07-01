@@ -8,7 +8,7 @@ def main_menu(_app)
   puts '3. Create a person'
   puts '4. Create a book'
   puts '5. Create a rental'
-  puts '6. List rentals for a person'
+  puts '6. List rentals'
   puts '7. Quit'
   print 'Enter your choice: '
 end
@@ -70,7 +70,7 @@ def handle_create_rental(app)
     book_index = gets.chomp.to_i - 1
 
     if book_index >= 0 && book_index < app.books.length
-      app.create_rental(person_index, book_index) 
+      app.create_rental(person_index, book_index)
     else
       puts 'Invalid book index.'
     end
@@ -84,10 +84,11 @@ def handle_list_rentals(app)
   app.rentals.each_with_index do |rental, index|
     book = rental.book
     person = rental.person
-    puts "#{index + 1}. Person: #{person.name}, Book: #{book.title}, Author: #{book.author}, Rental Date: #{rental.date}"
+    rental_info = "#{index + 1}. Person: #{person.name}"
+    rental_info += ", Book: #{book.title}, Author: #{book.author}, Rental Date: #{rental.date}"
+    puts rental_info
   end
 end
-
 
 def exit_app(_ = nil)
   puts 'Thank you for using the Library Management System. Goodbye!'
