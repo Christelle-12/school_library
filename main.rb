@@ -77,7 +77,6 @@ def exit_app(_ = nil)
   puts 'Thank you for using the Library Management System. Goodbye!'
 end
 
-# Invoke the main method to start the app
 def main
   app = App.new
 

@@ -23,7 +23,8 @@ class App
   def list_all_people
     puts 'List of all people:'
     people.each do |person|
-      puts "ID: #{person.id}, Name: #{person.name}"
+      designation = person.is_a?(Student) ? '[Student]' : '[Teacher]'
+      puts "ID: #{person.id}, Name: #{person.name}, Age: #{person.age}, Designation: #{designation}"
     end
   end
 
@@ -35,30 +36,41 @@ class App
       specialization = gets.chomp
       person = Teacher.new(age, specialization: specialization, name: name)
     else
-      puts "Invalid role. Please choose 'student' or 'teacher'."
-      return
+      return "Invalid role. Please choose 'student' or 'teacher'."
     end
 
     people << person
-    puts "Person created successfully. ID: #{person.id}, Name: #{person.name}"
+    "Person created successfully. ID: #{person.id}, Name: #{person.name}"
   end
 
   def create_book(title, author)
     book = Book.new(title, author)
     books << book
-    puts "Book created successfully. Title: #{book.title}, Author: #{book.author}"
+    "Book created successfully. Title: #{book.title}, Author: #{book.author}"
   end
 
-  def create_rental(person_id, book_title)
+  def create_rental(person_id, _book_index)
     person = find_person_by_id(person_id)
-    book = find_book_by_title(book_title)
 
-    if person && book
-      rental = Rental.new(book, person)
-      rentals << rental
-      puts "Rental created successfully. Person: #{person.name}, Book: #{book.title}"
+    if person
+      puts 'List of available books:'
+      books.each_with_index do |book, index|
+        puts "#{index + 1}. Title: #{book.title}, Author: #{book.author}"
+      end
+
+      print 'Enter the index of the book to rent: '
+      selected_index = gets.chomp.to_i - 1
+
+      if selected_index >= 0 && selected_index < books.length
+        book = books[selected_index]
+        rental = Rental.new(book, person)
+        rentals << rental
+        "Rental created successfully. Person: #{person.name}, Book: #{book.title}"
+      else
+        'Invalid book index.'
+      end
     else
-      puts 'Invalid person ID or book title.'
+      'Invalid person ID.'
     end
   end
 
@@ -67,12 +79,13 @@ class App
 
     if person
       person_rentals = rentals.select { |rental| rental.person == person }
-      puts "List of rentals for Person ID #{person_id}:"
+      output = "List of rentals for Person ID #{person_id}:\n"
       person_rentals.each do |rental|
-        puts "Book: #{rental.book.title}, Date: #{rental.date}"
+        output += "Book: #{rental.book.title}, Date: #{rental.date}\n"
       end
+      output
     else
-      puts 'Invalid person ID.'
+      'Invalid person ID.'
     end
   end
 
