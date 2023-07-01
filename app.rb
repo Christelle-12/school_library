@@ -14,24 +14,26 @@ class App
   end
 
   def list_all_books
-    puts "List of all books:"
+    puts 'List of all books:'
     books.each do |book|
       puts "Title: #{book.title}, Author: #{book.author}"
     end
   end
 
   def list_all_people
-    puts "List of all people:"
+    puts 'List of all people:'
     people.each do |person|
       puts "ID: #{person.id}, Name: #{person.name}"
     end
   end
 
-  def create_person(name, age, role, classroom = nil)
-    if role == "student"
-      person = Student.new(classroom, name)
-    elsif role == "teacher"
-      person = Teacher.new(age, name: name)
+  def create_person(name, age, role, _classroom = nil)
+    if role == 'student'
+      person = Student.new(age, name: name)
+    elsif role == 'teacher'
+      puts 'Enter teacher specialization:'
+      specialization = gets.chomp
+      person = Teacher.new(age, specialization: specialization, name: name)
     else
       puts "Invalid role. Please choose 'student' or 'teacher'."
       return
@@ -56,7 +58,7 @@ class App
       rentals << rental
       puts "Rental created successfully. Person: #{person.name}, Book: #{book.title}"
     else
-      puts "Invalid person ID or book title."
+      puts 'Invalid person ID or book title.'
     end
   end
 
@@ -70,7 +72,7 @@ class App
         puts "Book: #{rental.book.title}, Date: #{rental.date}"
       end
     else
-      puts "Invalid person ID."
+      puts 'Invalid person ID.'
     end
   end
 
