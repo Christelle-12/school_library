@@ -103,8 +103,6 @@ def main
     main_menu(app)
     choice = gets.chomp.to_i
 
-    binding.pry if choice == 0  # Insert Pry binding here
-
     handle_choice(app, choice)
 
     break if choice == 7

@@ -10,5 +10,3 @@ class Student < Person
     'I love studying!'
   end
 end
-
-binding.pry
