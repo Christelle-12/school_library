@@ -1,4 +1,5 @@
 require_relative 'app'
+require 'pry'
 
 def main_menu(_app)
   puts "\nWelcome to the Library Management System!"
@@ -34,7 +35,8 @@ def handle_choice(app, choice)
 end
 
 def handle_list_all_books(app)
-  app.list_all_books
+  # Introduce a bug: Use incorrect method name
+  app.list_all_boooks
 end
 
 def handle_list_all_people(app)
@@ -100,6 +102,9 @@ def main
   loop do
     main_menu(app)
     choice = gets.chomp.to_i
+
+    binding.pry if choice == 0  # Insert Pry binding here
+
     handle_choice(app, choice)
 
     break if choice == 7
