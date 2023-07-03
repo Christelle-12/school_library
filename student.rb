@@ -1,3 +1,4 @@
+require 'pry'
 require_relative 'person'
 
 class Student < Person
@@ -6,6 +7,6 @@ class Student < Person
   end
 
   def play_hooky
-    '¯\(ツ)/¯'
+    'I love studying!'
   end
 end
